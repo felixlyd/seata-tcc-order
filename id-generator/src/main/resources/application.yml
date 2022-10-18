@@ -1,0 +1,14 @@
+# 应用名称
+spring:
+  application:
+    name: tcc-order-id-generator
+
+# eureka服务端口
+server:
+  port: 8001
+
+# eureka配置信息
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
