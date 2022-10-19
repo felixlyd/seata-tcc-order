@@ -12,3 +12,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8000/eureka/
+
+# id生成器配置
+id-generator:
+  type: tinyId

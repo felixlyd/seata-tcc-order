@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "id-generator.type",
+      "type": "java.lang.String",
+      "description": "id生成器类型.",
+      "defaultValue": "tinyId",
+      "values": [
+        {
+          "value": "tinyId",
+          "description": "滴滴的id生成器."
+        },
+        {
+          "value": "leaf",
+          "description": "美团的id生成器，暂未引入."
+        }
+      ]
+  }
+] }
