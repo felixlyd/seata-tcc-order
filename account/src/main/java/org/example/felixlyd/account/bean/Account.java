@@ -1,4 +1,4 @@
-package org.example.lyd.account.bean;
+package org.example.felixlyd.account.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,8 +13,6 @@ import java.math.BigDecimal;
  * @date 2022/10/20
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Account {
     private Long id;
     private Long userId;

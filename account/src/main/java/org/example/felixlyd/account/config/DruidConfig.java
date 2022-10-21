@@ -1,4 +1,4 @@
-package org.example.lyd.account.config;
+package org.example.felixlyd.account.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;

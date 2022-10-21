@@ -1,4 +1,4 @@
-package org.example.lyd.account;
+package org.example.felixlyd.account;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
