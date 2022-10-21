@@ -13,7 +13,7 @@ Support jdk version 1.7+
 git clone https://github.com/didi/tinyid.git
 
 ## Create table
-cd tinyid/tinyid-server/ && create table with db.sql (mysql)
+cd tinyid/tinyid-server/ && create table with tinyid-db.sql (mysql)
 
 ## Config db
 
