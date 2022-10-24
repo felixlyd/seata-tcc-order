@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("org.example.lyd.account.mapper")
+@MapperScan("org.example.felixlyd.account.mapper")
 public class AccountApplication {
 
     public static void main(String[] args) {

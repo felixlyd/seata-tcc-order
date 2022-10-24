@@ -1,7 +1,6 @@
 package org.example.felixlyd.account.tcc.impl;
 
 import io.seata.rm.tcc.api.BusinessActionContext;
-import io.seata.rm.tcc.api.BusinessActionContextParameter;
 import lombok.extern.slf4j.Slf4j;
 import org.example.felixlyd.account.bean.Account;
 import org.example.felixlyd.account.mapper.AccountMapper;
@@ -83,8 +82,31 @@ public class DecreaseAccountTccActionImpl implements DecreaseAccountTccAction {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean rollback(BusinessActionContext businessActionContext) {
-        return false;
+        Long userId = Long.parseLong(businessActionContext.getActionContext("userId").toString());
+        BigDecimal money = new BigDecimal(businessActionContext.getActionContext("money").toString());
+        log.info("扣减账户金额：第二阶段，回滚，userId={}, money={}, xid={}.", userId, money, businessActionContext.getXid());
+
+        // 查询上下文标识发现为null时，说明try方法还未执行或者该上下文已被处理
+        if(ResultHolder.getResult(getClass(), businessActionContext.getXid())==null){
+            return true;
+        }
+
+        // 查询账户
+        Account account = accountMapper.selectByUserId(userId);
+
+        // 更新账户的冻结额、余额
+        account.setFrozen(account.getFrozen().subtract(money));
+        account.setResidue(account.getResidue().add(money));
+
+        // 更新账户的冻结额、已用额
+        accountMapper.updateResidueAndFrozen(account);
+
+        // 删除上下文标识
+        ResultHolder.removeResult(getClass(), businessActionContext.getXid());
+
+        log.info("扣减账户金额：第二阶段，回滚完成. xid={}", businessActionContext.getXid());
+        return true;
     }
 }

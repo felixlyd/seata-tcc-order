@@ -14,7 +14,15 @@ spring:
 #druid连接池配置
 druid:
   #配置监控统计拦截的filters，stat:监控统计; slf4j：日志记录; wall：防御sql注入
-  filters: wall, stat, slf4j
+  filter:
+    slf4j:
+      enabled: true
+    stat:
+      enabled: true
+      db-type: mysql
+    wall:
+      enabled: true
+      db-type: mysql
   #初始化连接池的连接数量 大小，最小，最大
   initial-size: 5
   min-idle: 5

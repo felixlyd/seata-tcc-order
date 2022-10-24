@@ -2,7 +2,30 @@
 
 # 二、项目介绍
 
-# 三、优化点
+# 三、快速开始
+
+- 从 https://github.com/seata/seata/releases,下载服务器软件包，将其解压缩。
+
+```shell
+Usage: sh seata-server.sh(for linux and mac) or cmd seata-server.bat(for windows) [options]
+  Options:
+    --host, -h
+      The address is expose to registration center and other service can access seata-server via this ip
+      Default: 0.0.0.0
+    --port, -p
+      The port to listen.
+      Default: 8091
+    --storeMode, -m
+      log store mode : file、db
+      Default: file
+    --help
+
+e.g.
+
+sh seata-server.sh -p 8091 -h 127.0.0.1 -m file
+```
+
+# 四、优化点
 
 ## 全局ID生成器
 
@@ -19,6 +42,8 @@
 
 ### 3.实现不强依赖于zookeeper的雪花算法
 - [ ] 1.实现不强依赖于zookeeper的雪花算法
+
+### 4.用数据库管理seata全局事务信息而不是file配置
 
 # 四、注意事项
 
