@@ -15,7 +15,7 @@
     </update>
 
     <update id="updateFrozenAndUsed" parameterType="org.example.felixlyd.account.bean.Account">
-        UPDATE account SET frozen=#{frozen}, used=#{used} WHERE `user_id`=#{userId}
+        UPDATE account SET frozen=#{frozen}, used=#{used} WHERE user_id=#{userId}
     </update>
 
 </mapper>

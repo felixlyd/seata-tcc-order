@@ -24,7 +24,7 @@ public interface DecreaseAccountTccAction {
      * @param money 钱
      * @return 是否完成
      */
-    @TwoPhaseBusinessAction(name = "decreaseAccountTccAction")
+    @TwoPhaseBusinessAction(name = "decreaseAccountTccAction", commitMethod = "commit", rollbackMethod = "rollback")
     boolean prepareDecrease(BusinessActionContext businessActionContext,
                             @BusinessActionContextParameter(paramName = "userId") Long userId,
                             @BusinessActionContextParameter(paramName = "money") BigDecimal money);
