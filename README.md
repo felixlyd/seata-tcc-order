@@ -45,6 +45,10 @@ sh seata-server.sh -p 8091 -h 127.0.0.1 -m file
 
 ### 4.用数据库管理seata全局事务信息而不是file配置
 
+### 5.结合数据库解决tcc模式的幂等、悬挂、空回滚等问题
+
+### 6.整合度考虑：使用阿里旗下的nacos？
+
 # 四、注意事项
 
 1. seata**支持的SQL有限**，请仔细查阅相关文档，该文档包括四部分：[SQL限制](https://seata.io/zh-cn/docs/user/sqlreference/sql-restrictions.html)、[DML语句](https://seata.io/zh-cn/docs/user/sqlreference/dml.html)、[SQL修饰](https://seata.io/zh-cn/docs/user/sqlreference/sql-decoration.html)、[函数](https://seata.io/zh-cn/docs/user/sqlreference/function.html)

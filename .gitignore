@@ -31,3 +31,9 @@ build/
 .vscode/
 
 logs
+
+seata-server-1.5.2/seata/bin
+seata-server-1.5.2/seata/ext
+seata-server-1.5.2/seata/lib
+seata-server-1.5.2/seata/script
+seata-server-1.5.2/seata/target
