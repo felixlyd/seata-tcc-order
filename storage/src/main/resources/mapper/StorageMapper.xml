@@ -3,19 +3,19 @@
 <mapper namespace="org.example.felixlyd.storage.mapper.StorageMapper" >
 
     <select id="selectByProductId" resultType="org.example.felixlyd.storage.bean.Storage">
-        select id, product_id, total, used, residue, frozen from storage t where t.product_id = #{productId}
+        select `id`, `product_id`, `total`, `used`, `residue`, `frozen` from `storage` where `product_id` = #{productId}
     </select>
 
     <update id="updateResidueAndUsed" parameterType="org.example.felixlyd.storage.bean.Storage">
-        UPDATE storage SET residue = #{residue},used = #{used} where product_id = #{productId};
+        UPDATE `storage` SET `residue` = #{residue}, `used` = #{used} where `product_id` = #{productId}
     </update>
 
     <update id="updateResidueAndFrozen" parameterType="org.example.felixlyd.storage.bean.Storage">
-        UPDATE storage SET residue=#{residue}, frozen=#{frozen} WHERE product_id=#{productId}
+        UPDATE `storage` SET `residue`=#{residue}, `frozen`=#{frozen} WHERE `product_id`=#{productId}
     </update>
 
     <update id="updateFrozenAndUsed" parameterType="org.example.felixlyd.storage.bean.Storage">
-        UPDATE storage SET frozen=#{frozen}, used=#{used} WHERE product_id=#{productId}
+        UPDATE `storage` SET `frozen`=#{frozen}, `used`=#{used} WHERE `product_id`=#{productId}
     </update>
 
 </mapper>

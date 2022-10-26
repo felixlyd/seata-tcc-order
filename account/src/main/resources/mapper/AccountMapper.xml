@@ -3,19 +3,19 @@
 <mapper namespace="org.example.felixlyd.account.mapper.AccountMapper" >
     
     <select id="selectByUserId" resultType="org.example.felixlyd.account.bean.Account">
-        select id, user_id, total, used, residue, frozen from account t where t.user_id = #{userId}
+        select `id`, `user_id`, `total`, `used`, `residue`, `frozen` from `account` where `user_id` = #{userId}
     </select>
     
     <update id="updateResidueAndUsed" parameterType="org.example.felixlyd.account.bean.Account">
-        UPDATE account SET residue = #{residue},used = #{used} where user_id = #{userId};
+        UPDATE `account` SET `residue` = #{residue}, `used` = #{used} where `user_id` = #{userId}
     </update>
 
     <update id="updateResidueAndFrozen" parameterType="org.example.felixlyd.account.bean.Account">
-        UPDATE account SET residue=#{residue}, frozen=#{frozen} WHERE user_id=#{userId}
+        UPDATE `account` SET `residue`=#{residue}, `frozen`=#{frozen} WHERE `user_id`=#{userId}
     </update>
 
     <update id="updateFrozenAndUsed" parameterType="org.example.felixlyd.account.bean.Account">
-        UPDATE account SET frozen=#{frozen}, used=#{used} WHERE user_id=#{userId}
+        UPDATE `account` SET `frozen`=#{frozen}, `used`=#{used} WHERE `user_id`=#{userId}
     </update>
 
 </mapper>

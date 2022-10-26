@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.example.felixlyd.order.mapper.OrderMapper" >
+
+    <insert id="createOrder" parameterType="org.example.felixlyd.order.bean.Order">
+        INSERT INTO `order` (`id`, `order_id`, `user_id`, `product_id`, `count`, `money`,`status`)
+        VALUES (#{id}, #{orderId}, #{userId}, #{productId},#{count},#{money},  #{status})
+    </insert>
+
+    <update id="updateOrderStatus" parameterType="org.example.felixlyd.order.bean.Order">
+        UPDATE `order` SET `status`=#{status} WHERE `order_id`=#{orderId}
+    </update>
+
+    <delete id="deleteByOrderId" parameterType="org.example.felixlyd.order.bean.Order">
+        DELETE FROM `order` WHERE `order_id`= #{orderId}
+    </delete>
+</mapper>
