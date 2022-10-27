@@ -4,6 +4,14 @@
 
 # 三、快速开始
 
+## [0] 前期准备
+
+mysql建立对应数据库和表，详见db-sql文件夹下sql语句
+
+## [1] 启动eureka-server
+
+## [2] 启动seata-server
+
 - 从 https://github.com/seata/seata/releases,下载服务器软件包，将其解压缩。
 
 ```shell
@@ -25,13 +33,19 @@ e.g.
 sh seata-server.sh -p 8091 -h 127.0.0.1 -m file
 ```
 
+## [3] 启动tinyid-server和微服务id-generator
+
+## [4] 启动微服务storage、account、order 
+
+
+
 # 四、优化点
 
-## 全局ID生成器
+## [1] 全局ID生成器
 
 ### 1.通过配置切换ID生成器
 
--[x] 1.通过配置切换ID生成器
+- [x] 1.通过配置切换ID生成器
 
 ### 2.优化滴滴tinyId
 
@@ -43,9 +57,7 @@ sh seata-server.sh -p 8091 -h 127.0.0.1 -m file
 ### 3.实现不强依赖于zookeeper的雪花算法
 - [ ] 1.实现不强依赖于zookeeper的雪花算法
 
-
-
-## seata优化
+## [2] seata优化
 
 ### 1.用数据库管理seata全局事务信息而不是file配置
 

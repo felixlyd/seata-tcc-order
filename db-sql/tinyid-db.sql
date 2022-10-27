@@ -1,3 +1,5 @@
+# 此表可以放入业务数据库中
+
 CREATE TABLE `tiny_id_info` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `biz_type` varchar(63) NOT NULL DEFAULT '' COMMENT '业务类型，唯一',
