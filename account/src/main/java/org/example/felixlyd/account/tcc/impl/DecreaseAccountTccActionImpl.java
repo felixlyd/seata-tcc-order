@@ -45,6 +45,12 @@ public class DecreaseAccountTccActionImpl implements DecreaseAccountTccAction {
         // 更新账户的余额、冻结额
         accountMapper.updateResidueAndFrozen(account);
 
+        // 模拟prepare失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("prepare失败");
+        }
+
         // 保存上下文标识
         ResultHolder.setResult(getClass(), businessActionContext.getXid(), "prepare");
 
@@ -58,6 +64,12 @@ public class DecreaseAccountTccActionImpl implements DecreaseAccountTccAction {
         Long userId = Long.parseLong(businessActionContext.getActionContext("userId").toString());
         BigDecimal money = new BigDecimal(businessActionContext.getActionContext("money").toString());
         log.info("扣减账户金额：第二阶段，提交，userId={}, money={}, xid={}.", userId, money, businessActionContext.getXid());
+
+        // 模拟commit失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("commit失败");
+        }
 
         // 查询上下文标识发现为null时，说明try方法还未执行或者该上下文已被处理
         if(ResultHolder.getResult(getClass(), businessActionContext.getXid())==null){
@@ -102,6 +114,12 @@ public class DecreaseAccountTccActionImpl implements DecreaseAccountTccAction {
 
         // 更新账户的冻结额、已用额
         accountMapper.updateResidueAndFrozen(account);
+
+        // 模拟rollback失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("rollback失败");
+        }
 
         // 删除上下文标识
         ResultHolder.removeResult(getClass(), businessActionContext.getXid());

@@ -27,6 +27,7 @@ public class DeacreaseStorageTccActionImpl implements DecreaseStorageTccAction {
     @Transactional(rollbackFor = Exception.class)
     public boolean prepareDecrease(BusinessActionContext businessActionContext, Long productId, int count) {
         log.info("扣减库存数目：第一阶段，锁定库存，productId={}, count={}, xid={}.", productId, count, businessActionContext.getXid());
+
         Storage storage = storageMapper.selectByProductId(productId);
 
         if(storage.getResidue().compareTo(count)<0){
@@ -37,6 +38,12 @@ public class DeacreaseStorageTccActionImpl implements DecreaseStorageTccAction {
         storage.setResidue(storage.getResidue()-count);
 
         storageMapper.updateResidueAndFrozen(storage);
+
+        // 模拟prepare失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("prepare失败");
+        }
 
         ResultHolder.setResult(getClass(), businessActionContext.getXid(), "prepare");
 
@@ -63,6 +70,12 @@ public class DeacreaseStorageTccActionImpl implements DecreaseStorageTccAction {
 
         storageMapper.updateFrozenAndUsed(storage);
 
+        // 模拟commit失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("commit失败");
+        }
+
         log.info("扣减库存数目：第二阶段，提交完成. xid={}", businessActionContext.getXid());
         return true;
     }
@@ -85,6 +98,12 @@ public class DeacreaseStorageTccActionImpl implements DecreaseStorageTccAction {
         storage.setResidue(storage.getResidue()+count);
 
         storageMapper.updateResidueAndFrozen(storage);
+
+        // 模拟rollback失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("rollback失败");
+        }
 
         log.info("扣减库存数目：第二阶段，回滚完成. xid={}", businessActionContext.getXid());
         return true;

@@ -69,6 +69,8 @@ sh seata-server.sh -p 8091 -h 127.0.0.1 -m file
 
 ### 3.整合度考虑：使用阿里旗下的nacos？
 
+### 4. seata-tcc在commit和rollback阶段发生异常时，会反复重试，并且数据库数据不正确。需考虑如何设置重试次数。如何记录信息，方便人工介入
+
 # 四、注意事项
 
 1. seata**支持的SQL有限**，请仔细查阅相关文档，该文档包括四部分：[SQL限制](https://seata.io/zh-cn/docs/user/sqlreference/sql-restrictions.html)、[DML语句](https://seata.io/zh-cn/docs/user/sqlreference/dml.html)、[SQL修饰](https://seata.io/zh-cn/docs/user/sqlreference/sql-decoration.html)、[函数](https://seata.io/zh-cn/docs/user/sqlreference/function.html)

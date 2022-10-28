@@ -28,7 +28,19 @@ public class CreateOrderTccActionImpl implements CreateOrderTccAction {
     @Transactional(rollbackFor = Exception.class)
     public boolean prepareCreateOrder(BusinessActionContext businessActionContext, Order order) {
         log.info("创建订单：第一阶段，预留资源, xid={}", businessActionContext.getXid());
+
+        order.setStatus(0);
         orderMapper.createOrder(order);
+
+        // 模拟prepare失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("prepare失败");
+        }
+
+        // 保存上下文标识
+        ResultHolder.setResult(getClass(), businessActionContext.getXid(), "prepare");
+
         log.info("创建订单：第一阶段，完成. xid={}", businessActionContext.getXid());
         return true;
     }
@@ -45,6 +57,13 @@ public class CreateOrderTccActionImpl implements CreateOrderTccAction {
         Order orderObject = JSONObject.parseObject(businessActionContext.getActionContext("order").toString(), Order.class);
         orderObject.setStatus(1);
         orderMapper.updateOrderStatus(orderObject);
+
+        // 模拟commit失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("commit失败");
+        }
+
         log.info("创建订单：第二阶段，完成. xid={}", businessActionContext.getXid());
         return true;
     }
@@ -56,9 +75,18 @@ public class CreateOrderTccActionImpl implements CreateOrderTccAction {
         if (ResultHolder.getResult(getClass(), businessActionContext.getXid()) == null) {
             return true;
         }
+
         Order orderObject = JSONObject.parseObject(businessActionContext.getActionContext("order").toString(), Order.class);
 
         orderMapper.deleteByOrderId(orderObject);
+
+        // 模拟rollback失败
+        int test = 2;
+        if(test==1){
+            throw new RuntimeException("rollback失败");
+        }
+
+
         log.info("创建订单：第二阶段，完成. xid={}", businessActionContext.getXid());
         return true;
     }

@@ -15,7 +15,7 @@ import org.example.felixlyd.order.bean.Order;
 @LocalTCC
 public interface CreateOrderTccAction {
 
-    @TwoPhaseBusinessAction(name="createOrderTccAction")
+    @TwoPhaseBusinessAction(name="createOrderTccAction", commitMethod = "commit", rollbackMethod = "rollback")
     boolean prepareCreateOrder(BusinessActionContext businessActionContext,
                                @BusinessActionContextParameter(paramName = "order") Order order);
 
